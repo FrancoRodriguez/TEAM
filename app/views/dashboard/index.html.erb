@@ -1,0 +1,97 @@
+<div class="fade-in">
+  <div style="margin-bottom: 4rem; border-left: 3px solid var(--accent); padding-left: 2rem;">
+    <h1 style="font-size: 3.5rem; letter-spacing: -1px; margin-bottom: 0.5rem;">Resumen Financiero</h1>
+    <p style="color: var(--secondary); font-size: 1.1rem; font-weight: 300; letter-spacing: 0.5px;">
+      Bienvenido de nuevo, Franco. Tu patrimonio ha crecido un 
+      <span style="color: var(--accent); font-weight: 700;">4.2%</span> este mes.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-4" style="margin-bottom: 3rem;">
+    <div class="card">
+      <div class="stat-label">Valor Total Portfolio</div>
+      <div class="stat-value">€<%= number_to_human(@total_value, precision: 3, significant: false, units: { thousand: 'K', million: 'M' }) %></div>
+      <div class="stat-diff positive">↑ 12.5% INTERANUAL</div>
+    </div>
+    <div class="card">
+      <div class="stat-label">Ingreso Neto (Marzo)</div>
+      <div class="stat-value">€<%= number_with_delimiter(@monthly_income.to_i) %></div>
+      <div class="stat-diff positive house">↑ €450 vs FEB</div>
+    </div>
+    <div class="card">
+      <div class="stat-label">Ocupación (Marzo)</div>
+      <div class="stat-value"><%= (@avg_occupancy * 100).round(1) %>%</div>
+      <div class="stat-diff" style="color: var(--accent);">NIVEL PREMIER</div>
+    </div>
+    <div class="card">
+      <div class="stat-label">Reputación Global</div>
+      <div class="stat-value">★ <%= @avg_score.round(2) %></div>
+      <div class="stat-diff positive">TOP 5% GLOBAL</div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2" style="margin-bottom: 3rem;">
+    <div class="card">
+      <h3 style="margin-bottom: 2rem; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px; color: var(--secondary);">Evolución de Ingresos</h3>
+      <canvas id="incomeChart" height="200"></canvas>
+    </div>
+    <div class="card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <h3 style="text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px; color: var(--secondary);">Top Activos</h3>
+        <a href="/properties" style="font-size: 0.75rem; color: var(--accent); text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Explorar Todo</a>
+      </div>
+      <div class="property-list">
+        <% @top_properties.each do |p| %>
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; border-bottom: 1px solid var(--border);">
+            <div>
+              <div style="font-family: var(--font-serif); font-size: 1.1rem; color: var(--primary);"><%= p.name %></div>
+              <div style="font-size: 0.75rem; color: var(--secondary); letter-spacing: 0.5px;"><%= p.address %></div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-weight: 700; color: var(--primary);">€<%= number_with_delimiter(p.monthly_net_income.to_i) %><span style="font-size: 0.7rem; color: var(--secondary); font-weight: 400;"> / MES</span></div>
+              <div style="font-size: 0.7rem; color: var(--accent); font-weight: 700; text-transform: uppercase;"><%= (p.occupancy_rate * 100).to_i %>% OCUP.</div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const ctx = document.getElementById('incomeChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN'],
+      datasets: [{
+        label: 'Ingresos Netos (€)',
+        data: [8200, 9100, 8800, 10200, 11400, 11100],
+        borderColor: '#c5a059',
+        backgroundColor: 'rgba(197, 160, 89, 0.05)',
+        fill: true,
+        tension: 0.4,
+        borderWidth: 2,
+        pointRadius: 0,
+        pointHoverRadius: 6,
+        pointHoverBackgroundColor: '#c5a059',
+        pointHoverBorderColor: '#fff',
+        pointHoverBorderWidth: 3
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { 
+          beginAtZero: false, 
+          grid: { color: 'rgba(15, 23, 42, 0.05)' },
+          ticks: { font: { size: 10, weight: 600 }, color: '#64748b' }
+        },
+        x: { 
+          grid: { display: false },
+          ticks: { font: { size: 10, weight: 600, family: 'Inter' }, color: '#64748b' }
+        }
+      }
+    }
+  });
+</script>

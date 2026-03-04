@@ -1,0 +1,144 @@
+<div class="fade-in">
+  <div style="margin-bottom: 3rem;">
+    <a href="/properties" style="text-decoration: none; color: var(--accent); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;">← Volver al Portfolio</a>
+  </div>
+
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; gap: 2rem; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 300px;">
+      <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+        <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 0; letter-spacing: -2px; line-height: 1;"><%= @property.name %></h1>
+        <span class="badge badge-luxury" style="white-space: nowrap;"><%= @property.city %></span>
+      </div>
+      <p style="color: var(--secondary); font-size: 1.1rem; font-weight: 300; letter-spacing: 0.5px;"><%= @property.address %></p>
+    </div>
+    <div style="text-align: right; min-width: 200px;">
+      <div class="badge badge-blue" style="font-size: 0.8rem; margin-bottom: 0.75rem;">ID DE ACTIVO #<%= @property.id %></div>
+      <div style="font-weight: 700; color: var(--primary); font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase;"><%= @property.square_meters %> M² CONSTRUIDOS</div>
+    </div>
+  </div>
+
+<div style="height: 500px; border-radius: var(--radius); overflow: hidden; margin-bottom: 4rem; box-shadow: var(--shadow-lux); position: relative;">
+  <% if @property.image_url.present? %>
+    <img src="<%= @property.image_url %>" style="width: 100%; height: 100%; object-fit: cover;">
+  <% else %>
+    <div style="width: 100%; height: 100%; background: #eaeff5; display: flex; align-items: center; justify-content: center; color: var(--secondary); font-weight: 600;">
+      [ Sin Imagen ]
+    </div>
+  <% end %>
+  <div style="position: absolute; bottom: 2rem; right: 2rem;">
+     <div class="card" style="padding: 1.25rem 2rem; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);">
+       <div class="stat-label" style="font-size: 0.65rem;">Valor Mercado</div>
+       <div class="stat-value" style="font-size: 2rem;">€<%= number_with_delimiter(@property.current_value.to_i) %></div>
+     </div>
+  </div>
+</div>
+
+<div class="grid grid-cols-3" style="margin-bottom: 4rem;">
+  <div class="card">
+    <div class="stat-label">ROI ESTIMADO</div>
+    <div class="stat-value" style="font-size: 1.75rem;"><%= ((@property.monthly_net_income * 12 / @property.purchase_price) * 100).round(2) %>%</div>
+    <div class="stat-diff positive" style="font-size: 0.7rem;"> RENDIMIENTO ÉLITE</div>
+  </div>
+  <div class="card">
+    <div class="stat-label">COSTO ADQUISICIÓN</div>
+    <div class="stat-value" style="font-size: 1.75rem;">€<%= number_with_delimiter(@property.purchase_price.to_i) %></div>
+    <div class="stat-diff" style="color: var(--secondary); font-size: 0.7rem;">CAPITAL INICIAL</div>
+  </div>
+  <div class="card">
+    <div class="stat-label">REPUTACIÓN</div>
+    <div class="stat-value" style="font-size: 1.75rem;">★ <%= @property.airbnb_score %></div>
+    <div style="font-size: 0.65rem; color: var(--secondary); font-weight: 700; letter-spacing: 1px; margin-top: 0.5rem;">CALIFICACIÓN ÉLITE</div>
+  </div>
+</div>
+
+<div class="grid grid-cols-3" style="margin-bottom: 4rem;">
+  <div class="card" style="grid-column: span 2; padding: 0; overflow: hidden; position: relative; height: 450px; border: 1px solid var(--border); background: #f8fafc;">
+    <div id="map" style="width: 100%; height: 100%; z-index: 1;"></div>
+    <div style="position: absolute; bottom: 1.5rem; left: 1.5rem; background: var(--primary); color: white; padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.6rem; font-weight: 700; letter-spacing: 1px; z-index: 10; pointer-events: none; opacity: 0.9;">
+      INTEL SATELITAL EN TIEMPO REAL
+    </div>
+  </div>
+  
+  <div class="card" style="background: var(--primary); border: none; display: flex; flex-direction: column; justify-content: center; padding: 2.5rem;">
+    <h2 style="color: var(--accent); font-size: 1.5rem; margin-bottom: 1.5rem; letter-spacing: -0.5px;">Propuesta Inteligente</h2>
+    <p style="margin-bottom: 2rem; color: rgba(255,255,255,0.8); font-size: 0.95rem; font-weight: 300; line-height: 1.8;">
+      Implementar un <strong>punto de carga Tesla</strong> elevará el valor operativo un 12.4% anual según proyecciones actuales.
+    </p>
+    <div style="display: flex; gap: 2rem; align-items: center; margin-bottom: 3rem;">
+      <div>
+        <div class="stat-label" style="color: rgba(255,255,255,0.5);">Capital Requerido</div>
+        <div style="font-family: var(--font-serif); font-weight: 700; font-size: 1.5rem; color: white;">€1,850</div>
+      </div>
+      <div>
+        <div class="stat-label" style="color: rgba(255,255,255,0.5);">Amortización</div>
+        <div style="font-family: var(--font-serif); font-weight: 700; font-size: 1.5rem; color: var(--accent);">7 Meses</div>
+      </div>
+    </div>
+    <button class="btn btn-accent" style="width: 100%; border-color: var(--accent); color: var(--accent);">Ejecutar Inversión</button>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom: 5rem;">
+  <h2 style="margin-bottom: 3rem; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 3px; color: var(--secondary); text-align: center;">Registro Histórico de Capital (CapEx)</h2>
+  <% if @tickets.any? %>
+    <div style="max-width: 800px; margin: 0 auto;">
+      <% @tickets.each do |ticket| %>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 2rem 0; border-bottom: 1px solid var(--border);">
+          <div style="flex: 1;">
+            <div style="font-family: var(--font-serif); font-weight: 700; font-size: 1.25rem; color: var(--primary); margin-bottom: 0.25rem;"><%= ticket.title %></div>
+            <div style="font-size: 0.9rem; color: var(--secondary); font-weight: 300;"><%= ticket.description %></div>
+          </div>
+          <div style="text-align: right; margin-left: 2rem;">
+            <div style="font-family: var(--font-serif); font-weight: 700; font-size: 1.25rem; color: var(--primary); margin-bottom: 0.5rem;">€<%= number_with_delimiter(ticket.budget.to_i) %></div>
+            <div class="badge <%= ticket.capex ? 'badge-luxury' : 'badge-blue' %>">
+              <%= ticket.capex ? 'CapEx' : 'OpEx' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p style="color: var(--secondary); font-style: italic; text-align: center;">No hay registros de mejora para este activo.</p>
+  <% end %>
+</div>
+<script>
+  (function() {
+    function initMap() {
+      const mapEl = document.getElementById('map');
+      if (!mapEl || mapEl._leaflet_id) return;
+
+      const coordsStr = "<%= @property.coordinates %>";
+      const coords = coordsStr.split(',').map(c => parseFloat(c.trim()));
+      
+      if (coords.length === 2 && !isNaN(coords[0]) && !isNaN(coords[1])) {
+        const map = L.map('map', {
+          center: coords,
+          zoom: 15,
+          zoomControl: false,
+          attributionControl: false
+        });
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+          maxZoom: 20
+        }).addTo(map);
+
+        const goldIcon = L.divIcon({
+          className: 'custom-div-icon',
+          html: "<div style='background-color:#c5a059; width:12px; height:12px; border-radius:50%; border:2px solid white; box-shadow:0 0 0 10px rgba(197, 160, 89, 0.2);'></div>",
+          iconSize: [12, 12],
+          iconAnchor: [6, 6]
+        });
+
+        L.marker(coords, {icon: goldIcon}).addTo(map);
+      }
+    }
+
+    document.addEventListener('turbo:load', initMap);
+    // Fallback for non-turbo loads
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMap);
+    } else {
+      initMap();
+    }
+  })();
+</script>

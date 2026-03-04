@@ -1,0 +1,131 @@
+<div class="fade-in" style="background: #f8f6f3; min-height: 100vh; padding-bottom: 5rem;">
+  
+  <!-- Hero Section -->
+  <div style="height: 60vh; width: 100%; position: relative; overflow: hidden; margin-bottom: 4rem;">
+    <% if @opportunity.category == 'Desarrollo' %>
+      <%= image_tag "marketplace_villa_1_1772655962015.png", style: "width: 100%; height: 100%; object-fit: cover;", alt: "Hero Image" %>
+    <% else %>
+      <%= image_tag "marketplace_building_1_1772656236550.png", style: "width: 100%; height: 100%; object-fit: cover;", alt: "Hero Image" %>
+    <% end %>
+    <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.8) 100%);"></div>
+    
+    <div class="container" style="position: absolute; bottom: 0; left: 0; right: 0; color: white; padding-bottom: 4rem;">
+      <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+        <span class="badge badge-luxury" style="background: transparent; border: 1px solid var(--accent);"><%= @opportunity.category %></span>
+        <span style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px); padding: 0.4rem 1rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Off-Market</span>
+      </div>
+      <h1 style="font-size: 4.5rem; color: white; margin-bottom: 1rem; letter-spacing: -1px; line-height: 1.1; font-family: var(--font-serif);"><%= @opportunity.title %></h1>
+      <p style="font-size: 1.25rem; font-weight: 300; opacity: 0.9; max-width: 600px;"><%= @opportunity.description %></p>
+    </div>
+  </div>
+
+  <div class="container" style="padding-top: 0;">
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 4rem;">
+      
+      <!-- Left Column: Main Content -->
+      <div>
+        <!-- Executive Summary -->
+        <section style="margin-bottom: 4rem;">
+          <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; font-family: var(--font-serif); color: var(--primary);">Resumen Ejecutivo</h2>
+          <p style="font-size: 1.1rem; color: var(--secondary); line-height: 1.8; margin-bottom: 1.5rem; font-weight: 300;">
+            Esta oportunidad representa un activo estratégico con un potencial de revalorización significativo a corto y medio plazo. Seleccionada bajo los estrictos criterios de nuestro ecosistema, ofrece un balance ideal entre preservación de capital y altos rendimientos, respaldado por un análisis riguroso de la demanda en un mercado en constante expansión.
+          </p>
+          <p style="font-size: 1.1rem; color: var(--secondary); line-height: 1.8; font-weight: 300;">
+            El proyecto contempla la adquisición del activo a un precio competitivo (por debajo de precio de mercado actual), una fase de optimización o desarrollo (CapEx pre-aprobado) y su posterior posicionamiento para generar ingresos recurrentes premium o proceder a una venta (Exit) con alto margen.
+          </p>
+        </section>
+        
+        <!-- Execution Plan -->
+        <section style="margin-bottom: 4rem;">
+          <h2 style="font-size: 2.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; font-family: var(--font-serif); color: var(--primary);">Plan de Ejecución</h2>
+          <div style="display: flex; flex-direction: column; gap: 2rem;">
+            
+            <div style="display: flex; gap: 2rem; align-items: flex-start;">
+              <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; flex-shrink: 0;">1</div>
+              <div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; font-family: var(--font-serif); color: var(--primary);">Adquisición y Cierre (Mes 1)</h3>
+                <p style="color: var(--secondary); font-weight: 300; line-height: 1.6;">Formalización de la compra off-market. Aseguramiento legal y constitución del vehículo de inversión exclusivo.</p>
+              </div>
+            </div>
+            
+            <div style="display: flex; gap: 2rem; align-items: flex-start;">
+               <div style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--accent); color: var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; flex-shrink: 0;">2</div>
+              <div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; font-family: var(--font-serif); color: var(--primary);"><%= @opportunity.category == 'Desarrollo' ? 'Desarrollo y Construcción (Mes 2-14)' : 'Optimización y CapEx (Mes 2-4)' %></h3>
+                <p style="color: var(--secondary); font-weight: 300; line-height: 1.6;">Ejecución del presupuesto de reforma / desarrollo bajo la supervisión de nuestro equipo, utilizando materiales de lujo.</p>
+              </div>
+            </div>
+            
+            <div style="display: flex; gap: 2rem; align-items: flex-start;">
+               <div style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--accent); color: var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; flex-shrink: 0;">3</div>
+              <div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; font-family: var(--font-serif); color: var(--primary);"><%= @opportunity.category == 'Desarrollo' ? 'Comercialización y Exit (Mes 15-18)' : 'Gestión Operativa y Rendimiento (Mes 5+)' %></h3>
+                <p style="color: var(--secondary); font-weight: 300; line-height: 1.6;">Inicio del flujo de caja positivo gestionado por nuestro PMS automatizado, o comercialización de las unidades a mercado abierto.</p>
+              </div>
+            </div>
+            
+          </div>
+        </section>
+
+        <!-- Market Study -->
+        <section>
+           <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; font-family: var(--font-serif); color: var(--primary);">Estudio de Mercado</h2>
+           <div style="background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
+             <p style="font-size: 1rem; color: var(--secondary); line-height: 1.7; margin-bottom: 1.5rem; font-weight: 300;">
+                El análisis comparativo (CMA) indica una presión al alza constante en los precios del metro cuadrado local (crecimiento YoY estimado 8.4%). La escasez de oferta de producto de nueva construcción con estándares de lujo garantiza una absorción rápida en el escenario de venta, o una tarifa diaria (ADR) muy superior al promedio en rentas cortas.
+             </p>
+             <div style="display: flex; gap: 3rem;">
+               <div>
+                  <div style="font-size: 0.75rem; color: var(--secondary); text-transform: uppercase; font-weight: 700; margin-bottom: 0.25rem; letter-spacing: 1px;">Valor m² Medio Zona</div>
+                  <div style="font-family: var(--font-serif); font-size: 2rem; color: var(--primary); font-weight: 700;">€5,200</div>
+               </div>
+               <div>
+                  <div style="font-size: 0.75rem; color: var(--secondary); text-transform: uppercase; font-weight: 700; margin-bottom: 0.25rem; letter-spacing: 1px;">Valor m² Nuestro Proyecto</div>
+                  <div style="font-family: var(--font-serif); font-size: 2rem; color: var(--success); font-weight: 700;">€3,850</div>
+               </div>
+             </div>
+           </div>
+        </section>
+      </div>
+      
+      <!-- Right Column: Financials & CTA -->
+      <div>
+        <div class="card" style="border: none; border-radius: 16px; background: white; box-shadow: 0 20px 40px rgba(0,0,0,0.06); padding: 3rem 2.5rem; position: sticky; top: 100px;">
+          <h3 style="font-size: 1.5rem; text-align: center; margin-bottom: 2.5rem; color: var(--primary); font-family: var(--font-serif);">Análisis Financiero</h3>
+          
+          <div style="text-align: center; margin-bottom: 3rem;">
+            <div style="font-size: 0.75rem; color: var(--secondary); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 0.5rem;">ROI PROYECTADO</div>
+            <div style="font-family: var(--font-serif); font-size: 4.5rem; font-weight: 700; color: var(--primary); line-height: 1;">
+              <%= @opportunity.projected_roi %>%
+            </div>
+          </div>
+          
+          <div style="margin-bottom: 3rem; background: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1rem;">
+              <span style="color: var(--secondary); font-weight: 500; font-size: 0.9rem;">Precio Adquisición</span>
+              <span style="font-weight: 700; font-family: var(--font-serif); font-size: 1.25rem; color: var(--primary);">€<%= number_with_delimiter(@opportunity.price.to_i) %></span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1rem;">
+              <span style="color: var(--secondary); font-weight: 500; font-size: 0.9rem;">Presupuesto CapEx (Est.)</span>
+              <span style="font-weight: 700; font-family: var(--font-serif); font-size: 1.25rem; color: var(--primary);">€<%= number_with_delimiter((@opportunity.price * 0.15).to_i) %></span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1rem;">
+              <span style="color: var(--secondary); font-weight: 500; font-size: 0.9rem;">Apalancamiento Bancario</span>
+              <span style="font-weight: 700; font-family: var(--font-serif); font-size: 1.1rem; color: var(--primary);"><%= @opportunity.category == 'Desarrollo' ? 'No Requerido' : '50% LTV' %></span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 0.5rem;">
+              <span style="color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">Beneficio Estimado</span>
+              <span style="color: var(--success); font-weight: 700; font-family: var(--font-serif); font-size: 1.75rem;">€<%= number_with_delimiter((@opportunity.price * (@opportunity.projected_roi / 100.0)).to_i) %></span>
+            </div>
+          </div>
+          
+          <button class="btn btn-primary" style="width: 100%; margin-bottom: 1rem; font-size: 0.9rem; padding: 1.25rem; border-radius: 8px;">Contactar Asesor</button>
+          <button style="width: 100%; background: transparent; border: 1px solid var(--border); color: var(--primary); font-size: 0.8rem; padding: 1rem; border-radius: 8px; font-weight: 600; text-transform: uppercase; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='transparent'" onclick="window.print()">Generar PDF</button>
+          
+          <p style="font-size: 0.65rem; color: var(--secondary); text-align: center; margin-top: 1.5rem; font-style: italic; line-height: 1.5;">La información de este dossier preliminar es estrictamente confidencial y exclusiva para miembros inversores.</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>

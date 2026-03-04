@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  address: MyString
+  purchase_price: 9.99
+  current_value: 9.99
+  occupancy_rate: 1.5
+  monthly_net_income: 9.99
+  airbnb_score: 1.5
+
+two:
+  name: MyString
+  address: MyString
+  purchase_price: 9.99
+  current_value: 9.99
+  occupancy_rate: 1.5
+  monthly_net_income: 9.99
+  airbnb_score: 1.5
